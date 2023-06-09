@@ -248,7 +248,7 @@ public class AdminView {
 					Alert emptyAlert = new Alert(Alert.AlertType.ERROR);
 					emptyAlert.setTitle("Empty Fields");
 					emptyAlert.setHeaderText(null);
-					emptyAlert.setContentText("Please enter the name of the item to be removed.");
+					emptyAlert.setContentText("Search field cannot be empty. Please enter a name.");
 					emptyAlert.showAndWait();
 					return;
 				}
