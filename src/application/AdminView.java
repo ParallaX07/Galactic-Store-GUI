@@ -72,7 +72,7 @@ public class AdminView {
 			}
 		});
 		
-		Image adminImage = new Image(new File("logout1.gif").toURI().toString());
+		Image adminImage = new Image(new File("logout.gif").toURI().toString());
 		ImageView adminImageView = new ImageView(adminImage);
 		adminImageView.setFitHeight(30);
 		adminImageView.setFitWidth(30);

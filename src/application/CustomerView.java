@@ -100,7 +100,7 @@ private ListView<String> orderHistoryListView = new ListView<>();
 		});
 		
 		//customer logout button profile image
-		Image userImage = new Image(new File("logout1.gif").toURI().toString());
+		Image userImage = new Image(new File("logout.gif").toURI().toString());
 		ImageView userImageView = new ImageView(userImage);
 		userImageView.setFitHeight(30);
 		userImageView.setFitWidth(30);

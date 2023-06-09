@@ -5,7 +5,7 @@ package models;
 
 import java.io.Serializable;
 
-public abstract class User implements Actions, Serializable{
+public abstract class User implements Serializable{
     private String name;
     private int age;
     private String gender;
