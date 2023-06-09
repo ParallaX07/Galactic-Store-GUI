@@ -75,7 +75,7 @@ private ListView<String> orderHistoryListView = new ListView<>();
 	
 		ListView<Product> productListView = new ListView<>(Store.getAllProducts());
 		productListView.setStyle("-fx-font-weight: bold;");
-		productListView.setOpacity(0.5);
+		productListView.setOpacity(0.8);
 		
 		//customer logout button 
 		Button logoutButton = new Button("Admin");

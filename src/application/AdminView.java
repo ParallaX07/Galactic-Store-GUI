@@ -48,7 +48,7 @@ public class AdminView {
 		ListView<Product> productListView = new ListView<>(Store.getAllProducts());
 		productListView.setStyle("-fx-font-weight: bold;");
 		// productListView.getItems().addAll(Store.getAllProducts());
-		productListView.setOpacity(0.5);
+		productListView.setOpacity(0.8);
 
 		//admin logout button 
 		Button logoutButton = new Button("Admin");
@@ -155,7 +155,7 @@ public class AdminView {
 		topBox.setArcHeight(50);
 		topBox.setArcWidth(50);
 		topBox.setFill(Color.WHITESMOKE);
-		topBox.setOpacity(0.8);
+		topBox.setOpacity(.8);
 		
 		
 		StackPane addItemPane = new StackPane();
