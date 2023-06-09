@@ -1,12 +1,13 @@
 package application;
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import database.Store;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -20,6 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -27,6 +29,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.control.Label;
 import models.CartProduct;
 import models.Customer;
 import models.Product;
@@ -78,7 +81,7 @@ private ListView<String> orderHistoryListView = new ListView<>();
 		productListView.setOpacity(0.8);
 		
 		//customer logout button 
-		Button logoutButton = new Button("Admin");
+		Button logoutButton = new Button("User");
 		Tooltip logout = new Tooltip();
 		logout.setShowDelay(new javafx.util.Duration(1));
 		logout.setText("Log out");
@@ -114,12 +117,20 @@ private ListView<String> orderHistoryListView = new ListView<>();
 		Rectangle blackBox2 = new Rectangle(800, 450);
 		blackBox2.setOpacity(0.5);
 		
+		Rectangle blackBox3 = new Rectangle(800, 450);
+		blackBox3.setOpacity(0.5);
+		
 		//add to cart and update cart page that will ask user for amount
 		Rectangle amountRec = new Rectangle(600, 200);
 		amountRec.setFill(Color.LIGHTGRAY);
 		amountRec.setArcHeight(50);
 		amountRec.setArcWidth(50);
 		
+		//label to ask amount 
+		Label amountLabel = new Label("Enter amount of items ");
+		amountLabel.setStyle("-fx-font-weight: bold;");
+		amountLabel.setTranslateY(-25);
+		amountLabel.setTranslateX(-189);
 		//Text field to ask for amount 
 		TextField tfamount = new TextField();
 		tfamount.setMinWidth(400);
@@ -140,7 +151,7 @@ private ListView<String> orderHistoryListView = new ListView<>();
 		amountBox.setAlignment(Pos.CENTER);
 
 		//Stack pane for add to cart and update cart page
-		StackPane addUpdateSpane = new StackPane(blackBox2, amountRec, amountBox);
+		StackPane addUpdateSpane = new StackPane(blackBox, amountRec, amountLabel, amountBox);
 		addUpdateSpane.setVisible(false);
 		
 		//view cart page
@@ -183,7 +194,7 @@ private ListView<String> orderHistoryListView = new ListView<>();
 		//add view cart view list here
 		VBox cartLayout = new VBox(cartbt, tfsearchCart, okCartbt, cartListView);
 		//view cart stack pane
-		StackPane viewCartspane = new StackPane(blackBox, viewCartRec, cartLayout);
+		StackPane viewCartspane = new StackPane(blackBox2, viewCartRec, cartLayout);
 		viewCartspane.setVisible(false);
 		
 		//order history buttons and etc
@@ -195,9 +206,11 @@ private ListView<String> orderHistoryListView = new ListView<>();
 		orderHistoryRec.setArcHeight(50);
 		orderHistoryRec.setArcWidth(50);
 		
+		
+		
 		VBox orderHistoryLayout = new VBox(orderHistoryListView, orderHistoryGobackbt);
 		orderHistoryLayout.setAlignment(Pos.CENTER);
-		StackPane viewOrderHistorySpane = new StackPane(blackBox, orderHistoryRec, orderHistoryLayout);
+		StackPane viewOrderHistorySpane = new StackPane(blackBox3, orderHistoryRec, orderHistoryLayout);
 		viewOrderHistorySpane.setVisible(false);
 
 		// Create the sorting ComboBox
@@ -298,7 +311,15 @@ private ListView<String> orderHistoryListView = new ListView<>();
 				okCartbt.setVisible(true);
 				
 				okCartbt.setOnAction(eUpdate -> {
-					String name = tfsearch.getText();
+					if (tfsearchCart.getText().isEmpty()){
+						Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("Error");
+						alert.setHeaderText(null);
+						alert.setContentText("Search field cannot be empty. Please enter a name.");
+						alert.showAndWait();
+						return;
+					}
+					String name = tfsearchCart.getText();
 					searchBox.setVisible(false);
 					addUpdateSpane.setVisible(true);
 					amountOkbt.setOnAction(eamount ->{
