@@ -5,10 +5,11 @@
 2. [Features](#features)
 3. [Installation](#installation)
 4. [Usage](#usage)
-5. [Screenshots](#screenshots)
-6. [Default User List](#default-user-list)
-7. [Default Product List](#default-product-list)
-8. [Contributors](#contributors)
+5. [UML Class Diagram](#uml-class-diagram)
+6. [Screenshots](#screenshots)
+7. [Default User List](#default-user-list)
+8. [Default Product List](#default-product-list)
+9. [Contributors](#contributors)
 
 ## Overview
 
@@ -36,8 +37,18 @@ To start the application, simply run the Main class. You will be presented with 
 
 Once logged in, the application will display a different interface depending on your user type. If you are a customer, you can browse the product list, add products to your shopping cart, and proceed to checkout when ready. If you are an administrator, you can manage products and user accounts.
 
+## UML Class Diagram
+![UML](preview/GalacticStoreUML.png)
+
 ## Screenshots
-screenshots will be added later
+### Login Screen
+![Screenshot](preview/loginScreen.png)
+### Signup Screen
+![Screenshot](preview/signUpScreen.png)
+### Admin UI
+![Screenshot](preview/adminUI.png)
+### Customer UI
+![Screenshot](preview/customerUI.png)
 
 ## Default Product List
 
