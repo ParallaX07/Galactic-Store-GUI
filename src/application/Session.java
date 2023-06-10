@@ -5,8 +5,6 @@ package application;
  */
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 import database.Store;
 //import database.Store;
@@ -17,48 +15,8 @@ import models.User;
 
 public class Session {
     private static Session session = null;
-    public Scanner inputScanner = new Scanner(System.in);
-    public Scanner scanString = new Scanner(System.in);
     private ArrayList<Product> initalProduct = new ArrayList<Product>();
     private ArrayList<User> userList = new ArrayList<User>();
-
-    public int readInt() {
-        int choice = -1;
-        while (choice == -1) {
-            try {
-                System.out.print("> ");
-                choice = this.inputScanner.nextInt();
-                if(choice < 0){
-                    System.out.println("Invalid input. Please enter a non-negative number.");
-                    choice = -1; // reset the choice
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a number.");
-                this.inputScanner.nextLine(); // discard the invalid input
-            }
-        }
-        this.inputScanner.nextLine();  // clear the newline left by nextInt()
-        return choice;
-    }
-
-    public double readDouble() {
-        double choice = -1;
-        while (choice == -1) {
-            try {
-                System.out.print("> ");
-                choice = this.inputScanner.nextDouble();
-                if(choice < 0){
-                    System.out.println("Invalid input. Please enter a non-negative number.");
-                    choice = -1; // reset the choice
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a number.");
-                this.inputScanner.nextLine(); // discard the invalid input
-            }
-        }
-        this.inputScanner.nextLine();  // clear the newline left by nextInt()
-        return choice;
-    }
 
 
     private Session() {

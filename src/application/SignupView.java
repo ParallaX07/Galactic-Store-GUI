@@ -22,7 +22,7 @@ import javafx.scene.shape.*;
 
 public class SignupView {
 
-    Scene signUpScene;
+    public Scene signUpScene;
 
     public Scene signUpScene() {
 
