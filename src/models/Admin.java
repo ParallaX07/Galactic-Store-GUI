@@ -109,7 +109,7 @@ public class Admin extends User {
             alert.showAndWait();
         }
         
-        if (tfprice.getText() != null && !tfprice.getText().isEmpty()) {
+        if (tfprice.getText() != null) {
             try {
                 Double oldPrice = product.getPrice();
                 product.setPrice(Double.parseDouble(tfprice.getText()));
@@ -128,7 +128,7 @@ public class Admin extends User {
             }
         }
 
-        if (tfstock.getText() != null && !tfstock.getText().isEmpty()) {
+        if (tfstock.getText() != null) {
             try {
                 int oldStock = product.getStock();
                 product.setStock(Integer.parseInt(tfstock.getText()));

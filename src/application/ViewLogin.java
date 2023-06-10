@@ -64,8 +64,6 @@ public class ViewLogin {
 		TextField tfemail = new TextField();
 		tfemail.setMaxSize(200, 20);
 		tfemail.setTranslateY(3);
-		//remove
-		tfemail.setText(tfemail.getText());
 		
 		Label passwordLabel = new Label("Password ");
 		passwordLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
@@ -75,16 +73,12 @@ public class ViewLogin {
 		PasswordField pfpassword = new PasswordField();
 		pfpassword.setMaxSize(200, 20);
 		pfpassword.setTranslateY(18);
-		//remove
-		pfpassword.setText(pfpassword.getText());
 		
 		Button loginbt = new Button("Login");
 		loginbt.setPrefSize(200, 20);
 		loginbt.setOpacity(1);
 		loginbt.setTranslateY(40);
 		loginbt.setShape(new Rectangle(1,1));
-		//loginbt.setStyle("-fx-background-color: white");
-		//loginbt.setTextFill();
 		
 		Button signupbt = new Button("Signup");
 		signupbt.setPrefSize(200, 20);
