@@ -21,6 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -104,6 +105,8 @@ private ListView<String> orderHistoryListView = new ListView<>();
 		//customer logout button profile image
 		Image userImage = new Image(new File("logout.gif").toURI().toString());
 		ImageView userImageView = new ImageView(userImage);
+		userImageView.setFitHeight(30);
+		userImageView.setFitWidth(30);
 		userImageView.setTranslateX(-365);
 		userImageView.setTranslateY(200);
 		
@@ -134,6 +137,10 @@ private ListView<String> orderHistoryListView = new ListView<>();
 		tfamount.setOpacity(0.5);
 		tfamount.setPromptText("Enter amount");
 		tfamount.setStyle("-fx-font-weight: bold;");
+		//tfamount.setTranslateX(-50);
+		
+		//Label for product details 
+		//Label amountLabel = new Label();
 		
 		//okay button next to amount textfield 
 		Button amountOkbt = new Button("OK");
@@ -304,7 +311,15 @@ private ListView<String> orderHistoryListView = new ListView<>();
 				okCartbt.setVisible(true);
 				
 				okCartbt.setOnAction(eUpdate -> {
-					String name = tfsearch.getText();
+					if (tfsearchCart.getText().isEmpty()){
+						Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("Error");
+						alert.setHeaderText(null);
+						alert.setContentText("Search field cannot be empty. Please enter a name.");
+						alert.showAndWait();
+						return;
+					}
+					String name = tfsearchCart.getText();
 					searchBox.setVisible(false);
 					addUpdateSpane.setVisible(true);
 					amountOkbt.setOnAction(eamount ->{
@@ -317,6 +332,7 @@ private ListView<String> orderHistoryListView = new ListView<>();
 					tfsearchCart.setVisible(false);
 					okCartbt.setVisible(false);
 					viewCartspane.setVisible(false);
+					tfsearchCart.clear();
 				});
 				
 					//set visible to false once updateok button is clicked
@@ -328,6 +344,7 @@ private ListView<String> orderHistoryListView = new ListView<>();
 		//confirm purchase button action 
 		confirmPurchasebt.setOnAction(ecp -> {
 			customer.confirmPurchase();
+			viewCartspane.setVisible(false);
 		});
 		
 		goBackCartbt.setOnAction(egb ->{

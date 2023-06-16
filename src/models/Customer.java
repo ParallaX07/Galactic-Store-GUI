@@ -73,6 +73,15 @@ public class Customer extends User {
 
     //addToCart for GUI, it'll take in a string and int from text fields from customer and add the product to inCart
     public void addToCart(String name, int amount) {
+        if (amount < 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Input Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Amount cannot be negative.");
+            alert.showAndWait();
+            return;
+        }
+        
         Product product = Store.searchItem(name);
         if (amount > product.getStock()){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -153,6 +162,15 @@ public class Customer extends User {
             alert.setTitle("Error");
             alert.setHeaderText(null);
             alert.setContentText("Item does not exist.");
+            alert.showAndWait();
+            return;
+        }
+
+        if (amount < 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Input Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Amount cannot be negative.");
             alert.showAndWait();
             return;
         }

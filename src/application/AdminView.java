@@ -74,6 +74,8 @@ public class AdminView {
 		
 		Image adminImage = new Image(new File("logout.gif").toURI().toString());
 		ImageView adminImageView = new ImageView(adminImage);
+		adminImageView.setFitHeight(30);
+		adminImageView.setFitWidth(30);
 		adminImageView.setTranslateX(-365);
 		adminImageView.setTranslateY(200);
 		
@@ -246,7 +248,7 @@ public class AdminView {
 					Alert emptyAlert = new Alert(Alert.AlertType.ERROR);
 					emptyAlert.setTitle("Empty Fields");
 					emptyAlert.setHeaderText(null);
-					emptyAlert.setContentText("Please enter the name of the item to be removed.");
+					emptyAlert.setContentText("Search field cannot be empty. Please enter a name.");
 					emptyAlert.showAndWait();
 					return;
 				}
@@ -281,13 +283,14 @@ public class AdminView {
 						admin.updateProduct(product, tfname, tfprice, tfstock, tfgalaxy, tfplanet, tfcondition);
 						productListView.refresh();
 						addItemPane.setVisible(false);
+						searchBox.setVisible(false);
 					});
 					
 				}
+
 			});
 
 			goBackbt.setOnAction(eGoBack -> {
-				System.out.println("Go back clicked");
 				addItemPane.setVisible(false);
 			});
 		});

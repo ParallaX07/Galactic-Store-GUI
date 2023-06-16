@@ -24,7 +24,15 @@ public class Admin extends User {
                 alert.setHeaderText(null);
                 alert.setContentText("Product " + name + " already in store.");
                 alert.showAndWait();
-            } else {
+            }else if(price < 0 || stock < 0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Price and stock cannot be negative.");
+                alert.showAndWait();
+
+            } 
+            else {
                 Product newProduct = new Product(name, price, stock, planet, galaxy, condition);
                 Store.addProduct(newProduct);  // Add the new product to the store
                 FileHandler.saveProductsToFile();
@@ -47,7 +55,7 @@ public class Admin extends User {
             alert.setHeaderText(null);
             alert.setContentText("Product " + searchInput + " not in store.");
             alert.showAndWait();
-        } else if (searchInput == null || searchInput.trim().isEmpty()) {
+        } else if (searchInput == null) {
             Alert emptyAlert = new Alert(Alert.AlertType.INFORMATION);
             emptyAlert.setTitle("Empty");
             emptyAlert.setHeaderText(null);
@@ -108,8 +116,7 @@ public class Admin extends User {
             alert.setContentText("Product Condition: " + oldCondition + " has been updated to " + product.getCondition());
             alert.showAndWait();
         }
-        
-        if (tfprice.getText() != null) {
+        if (tfprice.getText() != null && Double.parseDouble(tfprice.getText()) >= 0 && !(tfprice.getText().isEmpty())) {
             try {
                 Double oldPrice = product.getPrice();
                 product.setPrice(Double.parseDouble(tfprice.getText()));
@@ -126,9 +133,16 @@ public class Admin extends User {
                 alert.setContentText("Please ensure you've entered the correct values in the fields.");
                 alert.showAndWait();
             }
+        } else if (Double.parseDouble(tfprice.getText()) < 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Input Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Stock cannot be negative.");
+            alert.showAndWait();
+        
         }
 
-        if (tfstock.getText() != null) {
+        if (tfstock.getText() != null && Integer.parseInt(tfstock.getText()) >= 0 && !(tfstock.getText().isEmpty())) {
             try {
                 int oldStock = product.getStock();
                 product.setStock(Integer.parseInt(tfstock.getText()));
@@ -145,6 +159,12 @@ public class Admin extends User {
                 alert.setContentText("Please ensure you've entered the correct values in the fields.");
                 alert.showAndWait();
             }
+        }else if (Integer.parseInt(tfstock.getText()) < 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Input Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Stock cannot be negative.");
+            alert.showAndWait();
         }
         FileHandler.saveProductsToFile();
     }
