@@ -25,7 +25,7 @@ public class Admin extends User {
                 alert.setContentText("Product " + name + " already in store.");
                 alert.showAndWait();
             } else {
-                Product newProduct = new Product(name, price, stock, galaxy, planet, condition);
+                Product newProduct = new Product(name, price, stock, planet, galaxy, condition);
                 Store.addProduct(newProduct);  // Add the new product to the store
                 FileHandler.saveProductsToFile();
                 //productListView.getItems().add(newProduct);  // Add the new product to the list view
@@ -60,7 +60,7 @@ public class Admin extends User {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Product Removed");
             alert.setHeaderText(null);
-            alert.setContentText("Product " + searchInput + " has been removed.");
+            alert.setContentText("Product " + product.getName() + " has been removed.");
             alert.showAndWait();
             
         }
@@ -135,7 +135,7 @@ public class Admin extends User {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Product Updated");
                 alert.setHeaderText(null);
-                alert.setContentText("Product Stock: " + oldStock + "has been updated to " + product.getStock());
+                alert.setContentText("Product Stock: " + oldStock + " has been updated to " + product.getStock());
                 alert.showAndWait();
 
             } catch (NumberFormatException nfe) {
