@@ -244,7 +244,7 @@ public class AdminView {
 				Product product = Store.searchItem(searchInput);
 
 				// if search empty then show alert
-				if (searchInput == null || searchInput.trim().isEmpty()) {
+				if (searchInput == null) {
 					Alert emptyAlert = new Alert(Alert.AlertType.ERROR);
 					emptyAlert.setTitle("Empty Fields");
 					emptyAlert.setHeaderText(null);
@@ -284,8 +284,8 @@ public class AdminView {
 						productListView.refresh();
 						addItemPane.setVisible(false);
 						searchBox.setVisible(false);
+						
 					});
-					
 				}
 
 			});

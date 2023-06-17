@@ -28,7 +28,7 @@ public class Admin extends User {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText(null);
-                alert.setContentText("Price and stock cannot be negative.");
+                alert.setContentText("Price or Stock cannot be negative.");
                 alert.showAndWait();
 
             } 
@@ -133,7 +133,7 @@ public class Admin extends User {
                 alert.setContentText("Please ensure you've entered the correct values in the fields.");
                 alert.showAndWait();
             }
-        } else if (Double.parseDouble(tfprice.getText()) < 0) {
+        } else if (tfprice.getText() != null && Double.parseDouble(tfprice.getText()) < 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Input Error");
             alert.setHeaderText(null);
@@ -159,7 +159,7 @@ public class Admin extends User {
                 alert.setContentText("Please ensure you've entered the correct values in the fields.");
                 alert.showAndWait();
             }
-        }else if (Integer.parseInt(tfstock.getText()) < 0){
+        }else if (tfstock.getText() != null && Integer.parseInt(tfstock.getText()) < 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Input Error");
             alert.setHeaderText(null);
