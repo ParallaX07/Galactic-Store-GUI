@@ -133,7 +133,7 @@ private ListView<String> orderHistoryListView = new ListView<>();
 		amountLabel.setTranslateX(-189);
 		//Text field to ask for amount 
 		TextField tfamount = new TextField();
-		tfamount.setMinWidth(400);
+		tfamount.setMaxWidth(500);
 		tfamount.setOpacity(0.5);
 		tfamount.setPromptText("Enter amount");
 		tfamount.setStyle("-fx-font-weight: bold;");
@@ -146,12 +146,16 @@ private ListView<String> orderHistoryListView = new ListView<>();
 		Button amountOkbt = new Button("OK");
 		amountOkbt.setPrefWidth(100);
 		
+		Button amountGoBackBt = new Button("Go back");
+		amountGoBackBt.setPrefWidth(100);
+		
 		//Hbox to hold textfield and button
-		HBox amountBox = new HBox(tfamount, amountOkbt);
+		HBox amountBox = new HBox(amountOkbt, amountGoBackBt);
 		amountBox.setAlignment(Pos.CENTER);
+		amountBox.setTranslateY(30);
 
 		//Stack pane for add to cart and update cart page
-		StackPane addUpdateSpane = new StackPane(blackBox, amountRec, amountLabel, amountBox);
+		StackPane addUpdateSpane = new StackPane(blackBox, amountRec, amountLabel, tfamount, amountBox);
 		addUpdateSpane.setVisible(false);
 		
 		//view cart page
@@ -250,14 +254,26 @@ private ListView<String> orderHistoryListView = new ListView<>();
 				if (customer.itemExists(name)){
 					addUpdateSpane.setVisible(true);
 					amountOkbt.setOnAction(eamount ->{
+						if (tfamount.getText().isEmpty()){
+							Alert alert = new Alert(AlertType.ERROR);
+							alert.setTitle("Error");
+							alert.setHeaderText(null);
+							alert.setContentText("Amount field cannot be empty. Please enter an amount.");
+							alert.showAndWait();
+							return;
+						}
 						//get amount from textfield
 						int amount = Integer.parseInt(tfamount.getText());
 						customer.addToCart(name, amount);	
 						productListView.refresh();
 						addUpdateSpane.setVisible(false);
+						//go back button
+					});
+					
+					amountGoBackBt.setOnAction(eGoBack -> {
+						addUpdateSpane.setVisible(false);
 					});
 				}
-				//set visible to false once updateok button is clicked
 				
 			});
 			
@@ -323,10 +339,22 @@ private ListView<String> orderHistoryListView = new ListView<>();
 					searchBox.setVisible(false);
 					addUpdateSpane.setVisible(true);
 					amountOkbt.setOnAction(eamount ->{
+						if (tfamount.getText().isEmpty()){
+							Alert alert = new Alert(AlertType.ERROR);
+							alert.setTitle("Error");
+							alert.setHeaderText(null);
+							alert.setContentText("Amount field cannot be empty. Please enter an amount.");
+							alert.showAndWait();
+							return;
+						}
 						//get amount from textfield
 						int amount = Integer.parseInt(tfamount.getText());
 						customer.updateCartItem(name, amount);	
 						productListView.refresh();
+						addUpdateSpane.setVisible(false);	
+					});	
+					//go back button
+					amountGoBackBt.setOnAction(eGoBack -> {
 						addUpdateSpane.setVisible(false);
 					});
 					tfsearchCart.setVisible(false);
@@ -358,7 +386,7 @@ private ListView<String> orderHistoryListView = new ListView<>();
 			// Convert to observable list
 			ObservableList<String> items = FXCollections.observableArrayList();
 			for (CartProduct product : orders) {
-				items.add("Name" + product.getProduct().getName() + 
+				items.add("Name: " + product.getProduct().getName() + 
 				"\nPrice: " + product.getProduct().getPrice() +
 				"\nQuantity Ordered: " + product.getQuantity());
 			}
