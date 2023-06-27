@@ -252,6 +252,15 @@ private ListView<String> orderHistoryListView = new ListView<>();
 				searchBox.setVisible(false);
 				String name = tfsearch.getText();
 				if (customer.itemExists(name)){
+					Product product = Store.searchItem(name);
+					if (product.getStock() == 0) {
+						Alert alert = new Alert(Alert.AlertType.INFORMATION);
+						alert.setTitle("Out of stock");
+						alert.setHeaderText(null);
+						alert.setContentText(product.getName() + " is out of stock");
+						alert.showAndWait();
+						return;
+					}
 					addUpdateSpane.setVisible(true);
 					amountOkbt.setOnAction(eamount ->{
 						if (tfamount.getText().isEmpty()){

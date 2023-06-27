@@ -60,12 +60,6 @@ public class Customer extends User {
             alert.setHeaderText(null);
             alert.setContentText("Item does not exist");
             alert.showAndWait();
-        }else if (product.getStock() == 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Out of stock");
-                alert.setHeaderText(null);
-                alert.setContentText(product.getName() + " is out of stock");
-                alert.showAndWait();
         }
         if (product != null) return true;
         else return false;
