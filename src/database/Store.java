@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import models.Product;
 import models.User;
 
@@ -84,11 +85,35 @@ public class Store implements Serializable {
 
     
     public static User login(String email, String password) throws Exception {
-		for (User user : Store.getAllUsers()) {
-			if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
-				return user;
-			}
+        boolean validEmail = false, validPassword = false;
+		for (User user : Store.getAllUsers()) {  
+            if (user.getEmail().equals(email)) {
+                validEmail = true;
+            }
+            if (user.getPassword().equals(password)) {
+                validPassword = true;
+            }
+			if(validEmail && validPassword) {
+                return user;
+            }
 		}
+        if (!validEmail){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Email");
+                alert.setHeaderText(null);
+                alert.setContentText("User not found.\nPlease recheck your credentials.");
+                alert.showAndWait();
+                return null;
+        }
+
+        if(validEmail && !validPassword){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Password");
+                alert.setHeaderText(null);
+                alert.setContentText("Incorrect password.\nPlease recheck your credentials.");
+                alert.showAndWait();
+                return null;
+        }
 		throw new Exception("User not found");
 	}
 }

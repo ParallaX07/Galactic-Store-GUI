@@ -132,11 +132,11 @@ public class ViewLogin {
             	CustomerView customerview = new CustomerView();
                 User loginUser = Store.login(email, password);
                 
-                if(loginUser instanceof Admin) {
+                if(loginUser instanceof Admin && loginUser != null) {
                 	Main.switchScenes(adminview.adminScene(loginUser));
                 	
                 }
-                if (loginUser instanceof Customer) {
+                if (loginUser instanceof Customer && loginUser != null) {
                 	Main.switchScenes(customerview.customerScene(loginUser));
                 }
                 
