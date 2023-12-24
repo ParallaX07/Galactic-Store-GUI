@@ -13,7 +13,7 @@
 
 ## Overview
 
-The Galactic Store application is a JavaFX-based desktop application designed to simulate an online store. It provides interfaces for both customers and administrators, allowing the management and purchasing of products, as well as the ability to manage user accounts.
+The Galactic Store application is a JavaFX-based desktop application designed to simulate an online store. It provides interfaces for both customers and administrators, allowing the management and purchasing of products.
 
 ## Features
 
